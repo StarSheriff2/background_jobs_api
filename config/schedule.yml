@@ -1,0 +1,4 @@
+stock_report_job:
+  cron: "*/5 * * * *"
+  class: "StockReportJob"
+  queue: critical
