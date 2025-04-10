@@ -1,26 +1,31 @@
 # Background Jobs API (Rails + Sidekiq + ActiveJob)
 
-This project is a simple, production-style **Rails API-only application** using the latest version of Rails. It demonstrates how to implement and test:
+This is a full-featured **Ruby on Rails API-only** application using modern background job patterns with Sidekiq and ActiveJob. It demonstrates how to build:
 
-- Background job processing with **Sidekiq** and **ActiveJob**
-- **User authentication** via `devise` and `devise-jwt`
-- Sending welcome emails using ActionMailer
-- Scraping a website and summarizing content using an AI model
-- Fetching and reporting stock market data from a free API
-- A mix of **event-based** and **cron-triggered** jobs
+- Real-world background jobs (email, scraping, reporting)
+- User authentication using JWT
+- Event-based and scheduled (cron-like) job triggering
+- Modular, testable architecture for background processing
+- Integration with external APIs for stock data
+- Web scraping and summarization
+- Email delivery with Letter Opener
 
 ---
 
 ## 🔧 Tech Stack
 
-- Ruby on Rails (API mode, latest)
-- Redis (for Sidekiq)
-- PostgreSQL
-- Sidekiq + ActiveJob
-- Devise + JWT for auth
-- Nokogiri (web scraping)
-- [Alpha Vantage or Financial Modeling Prep](https://financialmodelingprep.com/developer/docs/) for stock data
-- `rufus-scheduler` for cron-style scheduling
+| Component                                                                                                             | Version      |
+|-----------------------------------------------------------------------------------------------------------------------|--------------|
+| Ruby                                                                                                                  | 3.2+         |
+| **Rails**                                                                                                             | **8**        |
+| PostgreSQL                                                                                                            | 13+          |
+| Redis                                                                                                                 | 6.2+         |
+| Sidekiq                                                                                                               | 7+           |
+| Devise + JWT                                                                                                          | Auth system  |
+| ActiveJob                                                                                                             | Background jobs |
+| Nokogiri                                                                                                              | Web scraping |
+| Letter Opener                                                                                                         | Email preview |
+| [Alpha Vantage or Financial Modeling Prep](https://financialmodelingprep.com/developer/docs/) (future implementation) | Stock data API |
 
 ---
 
@@ -29,14 +34,13 @@ This project is a simple, production-style **Rails API-only application** using 
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/background_jobs_api.git
+git clone git@github.com:StarSheriff2/background_jobs_api.git
 cd background_jobs_api
 ```
 
 ### 2. Install dependencies
 ```bash
 bundle install
-yarn install --check-files
 ```
 
 ### 3. Setup the database
