@@ -33,4 +33,5 @@
 
 # Ignore IDE specific files
 .idea
+.rbenv-gemsets
 .idea/*
