@@ -137,10 +137,6 @@ Make sure to monitor Sidekiq logs for job success or failure.
 
 Created by Arturo Alvarez. Feel free to fork and extend!
 
-```yaml
+## 📝 License
 
----
-
-Would you like me to generate this file and add it to your project automatically, or help you publish this project on GitHub with an MIT license and full structure?
-# License: MIT
-```
+This project is [MIT](https://github.com/StarSheriff2/background_jobs_api/blob/main/LICENSE) licensed.
