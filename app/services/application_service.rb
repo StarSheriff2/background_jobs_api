@@ -1,5 +1,8 @@
 class ApplicationService
-    Response = Struct.new(:success?, :payload, :error) do
+    Response = Struct.new(:success, :payload, :error) do
+      def success?
+        !!success
+      end
       def failure?
         !success?
       end
@@ -13,7 +16,7 @@ class ApplicationService
       service = new(false)
       service.call(...)
     rescue StandardError => e
-      service.failure(e)
+      service&.failure(e)
     end
 
     def self.call!(...)
@@ -21,7 +24,7 @@ class ApplicationService
     end
 
     def success(payload = nil)
-      Response.new(true, payload)
+      Response.new(true, payload, nil)
     end
 
     def failure(exception, options = {})
