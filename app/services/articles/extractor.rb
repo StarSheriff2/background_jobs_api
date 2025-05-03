@@ -1,6 +1,6 @@
 require "open-uri"
 
-class ArticleExtractor
+class Articles::Extractor < ApplicationService
 
   CUTOFFS =  [
     /Related (articles|stories)/i,
@@ -11,15 +11,14 @@ class ArticleExtractor
     /All rights reserved/i
   ].freeze
 
-
-  def initialize(url)
+  def call(url)
     @url = url
     @doc = Nokogiri::HTML(URI.open(url))
+
+    success extract_text_and_format
   end
 
-  def call
-    extract_text_and_format
-  end
+  private
 
   def extract_text_and_format
     relevant_tags = extract_relevant_tags(find_article)
