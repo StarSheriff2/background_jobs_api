@@ -1,6 +1,17 @@
 require "open-uri"
 
 class ArticleExtractor
+
+  CUTOFFS =  [
+    /Related (articles|stories)/i,
+    /^More:/,
+    /^Read more/i,
+    /^Subscribe/i,
+    /©/,
+    /All rights reserved/i
+  ].freeze
+
+
   def initialize(url)
     @url = url
     @doc = Nokogiri::HTML(URI.open(url))
@@ -11,8 +22,8 @@ class ArticleExtractor
   end
 
   def extract_text_and_format
-    article_element = find_article
-    article_element.css("p, h2, h3").map(&:text).join("\n\n")
+    relevant_tags = extract_relevant_tags(find_article)
+    clean_article(relevant_tags)
   end
 
   def find_article
@@ -36,5 +47,19 @@ class ArticleExtractor
       cls = node["class"].to_s.downcase
       keywords.any? { |k| cls.include?(k) }
     end
+  end
+
+  private
+
+  def extract_relevant_tags(article_element)
+    article_element.css("p, h2, h3")
+  end
+
+  def clean_article(relevant_tags)
+    paragraphs = relevant_tags.map(&:text)
+    cut_index    = paragraphs.index { | p | CUTOFFS.any? { | rx | p =~ rx } }
+    article_text = paragraphs[0..(cut_index && cut_index - 1 || -1)].join("")
+    cut_index    = article_text.index(/\s{3,}/)
+    article_text[0..(cut_index && cut_index - 1 || -1)]
   end
 end
