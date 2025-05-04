@@ -1,4 +1,3 @@
-# spec/services/articles/extractor_spec.rb
 require 'rails_helper'
 
 RSpec.describe Articles::Extractor, type: :service do
