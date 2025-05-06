@@ -6,5 +6,4 @@ class Users::RegistrationsController < Devise::RegistrationsController
       SendWelcomeEmailJob.perform_later(user.id)
     end
   end
-
 end

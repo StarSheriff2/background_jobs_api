@@ -36,17 +36,17 @@ gem "thruster", require: false
 # gem "rack-cors"
 
 # Authentication
-gem 'devise'
-gem 'devise-jwt'
+gem "devise"
+gem "devise-jwt"
 
 # Background jobs
-gem 'sidekiq'
-gem 'redis'
-gem 'sidekiq-cron'
+gem "sidekiq"
+gem "redis"
+gem "sidekiq-cron"
 
 # Web scraping and APIs
-gem 'nokogiri'
-gem 'httparty'
+gem "nokogiri"
+gem "httparty"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -59,5 +59,9 @@ group :development, :test do
   gem "rubocop-rails-omakase", require: false
 
   gem "letter_opener"
-  gem 'letter_opener_web', '~> 3.0'
+  gem "letter_opener_web", "~> 3.0"
+
+  gem "rspec-rails", "~> 6.1.0"
+  gem "factory_bot_rails"
+  gem "faker"
 end
