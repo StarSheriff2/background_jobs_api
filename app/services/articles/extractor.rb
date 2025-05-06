@@ -57,8 +57,8 @@ class Articles::Extractor < ApplicationService
   def clean_article(relevant_tags)
     paragraphs = relevant_tags.map(&:text)
     cut_index    = paragraphs.index { | p | CUTOFFS.any? { | rx | p =~ rx } }
-    article_text = paragraphs[0..(cut_index && cut_index - 1 || -1)].join("")
+    article_text = paragraphs[0..(cut_index ? cut_index - 1 : -1)].join("")
     cut_index    = article_text.index(/\s{3,}/)
-    article_text[0..(cut_index && cut_index - 1 || -1)]
+    article_text[0..(cut_index ? cut_index - 1 : -1)]
   end
 end
