@@ -30,7 +30,6 @@ class ApplicationService
     def failure(exception)
       raise exception if @propagate
 
-      # ErrorService.error(exception, options)
       Response.new(success: false, payload: nil, error: exception)
     end
 end
