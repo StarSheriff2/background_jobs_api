@@ -2,13 +2,11 @@ module Groq
   module Chat
     module Completions
       class Prompt < ApplicationService
-        def initialize(prompt, client)
+        def call(prompt, client)
           @prompt = prompt
           @client = client
-        end
 
-        def call
-          response = @client.prompt(@prompt)
+          success @client.chat.completions(@prompt)
         end
       end
     end
